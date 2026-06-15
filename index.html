@@ -1,0 +1,657 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Produce - Contact Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* --- Core Configurations & Resets --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #fcfcfd;
+            color: #111827;
+            min-height: 100vh;
+            padding-bottom: 60px;
+        }
+
+        /* --- Navigation Bar System --- */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 8%;
+            background-color: transparent;
+            position: relative;
+            z-index: 100;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 60px;
+            height: 60px;
+            background-color: #ffe4e1; /* Pastel soft tone from image */
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+            font-size: 2rem;
+            font-weight: 800;
+            letter-spacing: 3px;
+            line-height: 1.2;
+        }
+
+        .logo-sub {
+            color: #555;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #4b5563;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s ease;
+        }
+
+        .nav-links a:hover {
+            color: #000;
+        }
+
+        .btn-nav-contact {
+            background-color: #f3f4f6;
+            padding: 10px 24px;
+            border-radius: 8px;
+            color: #111827 !important;
+        }
+
+        /* Mobile Responsive Menu Trigger */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 2px;
+            background-color: #111827;
+            transition: 0.3s;
+        }
+
+        /* --- Hero Layout & Headline --- */
+        .content-wrapper {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 4%;
+        }
+
+        .hero-section {
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+
+        .tag-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            border: 1.5px solid #111827;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 24px;
+        }
+
+        .main-heading {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: #0d122c; /* Deep rich dark navy tone */
+            line-height: 1.25;
+            letter-spacing: -0.5px;
+        }
+
+        /* --- Profile Grid Engine --- */
+        .grid-section {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            justify-content: center;
+            margin-top: 40px;
+        }
+
+        /* Individual Soft Glass-style Profile Cards */
+        .profile-card {
+            background: #ffffff;
+            border: 1px solid rgba(230, 235, 242, 0.7);
+            border-radius: 28px;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.02);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+        }
+
+        .profile-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .avatar-container {
+            width: 110px;
+            height: 110px;
+            border-radius: 50%;
+            background: radial-gradient(circle, #b1c6ff 0%, #688ef7 100%); /* Blue gradient aura underneath avatar */
+            padding: 4px;
+            margin-bottom: 20px;
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .name {
+            font-size: 1.15rem;
+            font-weight: 700;
+            color: #111827;
+            margin-bottom: 6px;
+        }
+
+        .role {
+            font-size: 0.85rem;
+            color: #6b7280;
+            margin-bottom: 24px;
+        }
+
+        .a-learn-more{
+            width: 100%;
+        }
+
+        .btn-learn-more {
+            width: 100%;
+            background: linear-gradient(135deg, #66dcff 0%, #46cdfc 100%);
+            color: white;
+            border: none;
+            padding: 12px 0;
+            font-family: inherit;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border-radius: 12px;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(70, 205, 252, 0.3);
+            transition: all 0.2s ease;
+        }
+
+        .btn-learn-more:hover {
+            box-shadow: 0 6px 20px rgba(70, 205, 252, 0.5);
+            opacity: 0.95;
+        }
+
+        /* --- Dynamic Viewport Breakpoints --- */
+
+        /* Medium Devices (Tablets, small laptops) */
+        @media (max-width: 1024px) {
+            .grid-section {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+            .main-heading {
+                font-size: 2.3rem;
+            }
+        }
+
+        /* Mobile Devices */
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 20px 5%;
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            /* Converts nav bar to an overlay dynamic menu for mobile screens */
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: #ffffff;
+                padding: 20px;
+                box-shadow: 0 10px 15px rgba(0,0,0,0.05);
+                gap: 20px;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .grid-section {
+                grid-template-columns: 1fr;
+                max-width: 340px;
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .main-heading {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo-container">
+            <div class="logo-icon">
+                <img src="logo.png" alt="logo" width="60" height="60" viewBox="0 0 60 60" fill="none">
+            </div>
+            <div class="logo-text">
+                <span class="logo-main">GSNS</span>
+                <span class="logo-main" style="font-size: 0.9rem; font-weight: 800; letter-spacing: 1.9px;">Salbari</span>
+            </div>
+        </div>
+
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <nav class="nav-links" id="navLinks">
+            <a href="#">About</a>
+            <a href="#">Recruitment</a>
+            <a href="#">Courses</a>
+            <a href="#">Magazine</a>
+            <a href="#" class="btn-nav-contact">Contact</a>
+        </nav>
+    </header>
+
+    <main class="content-wrapper">
+        
+        <section class="hero-section">
+            <div class="tag-badge">
+                <span class="asterisk">✦</span> FACULTY PAGE
+            </div>
+            <h1 class="main-heading">Good Shepherd National School, Salbari</h1>
+        </section>
+
+        <section class="grid-section">
+            <!--Keshab Swargiary-->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/keshab-s.png" alt="Keshab Swargiary" class="avatar">
+                </div>
+                <h3 class="name">KESHAB SWARGIARY</h3>
+                <p class="role">Principal</p>
+                <a class="a-learn-more" href="vcards/vcard-keshab.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!--Manabjyoti Boro-->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/manabjyoti-b.jpg" alt="Manabjyoti Boro" class="avatar">
+                </div>
+                <h3 class="name">MANABJYOTI BORO</h3>
+                <p class="role">Vice Principal</p>
+                <a class="a-learn-more" href="vcards/vcard-manabjyoti.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!--Violet Minj-->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/violet-m.jpg" alt="Violet Minj" class="avatar">
+                </div>
+                <h3 class="name">VIOLET MINJ</h3>
+                <p class="role">Assistant Teacher</p>
+                <a class="a-learn-more" href="vcards/vcard-violet.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!--Usha Boro-->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/usha-b.jpg" alt="Usha Boro" class="avatar">
+                </div>
+                <h3 class="name">USHA BORO</h3>
+                <p class="role">Assistant Teacher</p>
+                <a class="a-learn-more" href="vcards/vcard-usha.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!--KAMAL RAMCHIARY-->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/kamal-r.png" alt="Kamal Ramchiary" class="avatar">
+                </div>
+                <h3 class="name">KAMAL RAMCHIARY</h3>
+                <p class="role">Office Assistant</p>
+                <a class="a-learn-more" href="vcards/vcard-kamal.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- ABHINAB BASUMATARY -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/abhinab-b.jpg" alt="Abhinab Basumatary" class="avatar">
+                </div>
+                <h3 class="name">ABHINAB BASUMATARY</h3>
+                <p class="role">Tutor</p>
+                <a class="a-learn-more" href="vcards/vcard-abhinab.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- GITANJALI MAHILARY -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/gitanjali-m.jpg" alt="Gitanjali Mahilary" class="avatar">
+                </div>
+                <h3 class="name">GITANJALI MAHILARY</h3>
+                <p class="role">Tutor</p>
+                <a class="a-learn-more" href="vcards/vcard-gitanjali.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- KALPANA BASUMATARY -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/kalpana-b.jpg" alt="Kalpana Basumatary" class="avatar">
+                </div>
+                <h3 class="name">KALPANA BASUMATARY</h3>
+                <p class="role">Assistant Teacher</p>
+                <a class="a-learn-more" href="vcards/vcard-kalpana.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- PHAMI KHAKLARi -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/phami-k.jpg" alt="Phami Khaklari" class="avatar">
+                </div>
+                <h3 class="name">PHAMI KHAKLARI</h3>
+                <p class="role">Assistant Teacher</p>
+                <a class="a-learn-more" href="vcards/vcard-phami.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- SEM KANDULNA -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/sem-k.png" alt="Sem Kandulna" class="avatar">
+                </div>
+                <h3 class="name">SEM KANDULNA</h3>
+                <p class="role">Assistant Teacher</p>
+                <a class="a-learn-more" href="vcards/vcard-sem.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- EJUMA GOYARY -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/ejuma-g.jpg" alt="Ejuma Goyary" class="avatar">
+                </div>
+                <h3 class="name">EJUMA GOYARY</h3>
+                <p class="role">Assistant Teacher</p>
+                <a class="a-learn-more" href="vcards/vcard-ejuma.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- SONIYA SWARGIARY -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/soniya-s.jpg" alt="Soniya Swargiary" class="avatar">
+                </div>
+                <h3 class="name">SONIYA SWARGIARY</h3>
+                <p class="role">Tutor</p>
+                <a class="a-learn-more" href="vcards/vcard-soniya.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- RADHA BASUMATARY -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/radha-b.jpg" alt="Radha Basumatary" class="avatar">
+                </div>
+                <h3 class="name">RADHA BASUMATARY</h3>
+                <p class="role">Assistant Teacher</p>
+                <a class="a-learn-more" href="vcards/vcard-radha.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- PRIYANKA DAIMARI -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/priyanka-d.jpg" alt="Priyaka Daimari" class="avatar">
+                </div>
+                <h3 class="name">PRIYANKA DAIMARI</h3>
+                <p class="role">Assistant Teacher</p>
+                <a class="a-learn-more" href="vcards/vcard-priyanka.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- SANGITA BARO -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/sangita-b.jpg" alt="Sangita Baro" class="avatar">
+                </div>
+                <h3 class="name">SANGITA BARO</h3>
+                <p class="role">Assistant Teacher</p>
+                <a class="a-learn-more" href="vcards/vcard-sangita.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- ROBERTSON BORO -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/robertson-b.jpg" alt="Robertson Boro" class="avatar">
+                </div>
+                <h3 class="name">ROBERTSON BORO</h3>
+                <p class="role">Tutor</p>
+                <a class="a-learn-more" href="vcards/vcard-robertson.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- JUPITARA DAS -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/jupitara-d.jpg" alt="Jupitara Das" class="avatar">
+                </div>
+                <h3 class="name">JUPITARA DAS</h3>
+                <p class="role">Assistant Teacher</p>
+                <a class="a-learn-more" href="vcards/vcard-jupitara.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- SAMAINA BASUMATARY -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/samaina-b.jpg" alt="Samaina Basumatary" class="avatar">
+                </div>
+                <h3 class="name">SAMAINA BASUMATARY</h3>
+                <p class="role">Assistant Teacher</p>
+                <a class="a-learn-more" href="vcards/vcard-samaina.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- DIPA BARO -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/dipa-b.jpg" alt="Dipa Baro" class="avatar">
+                </div>
+                <h3 class="name">DIPA BARO</h3>
+                <p class="role">Assistant Teacher</p>
+                <a class="a-learn-more" href="vcards/vcard-dipa.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- RUTH BORO -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/ruth-b.jpg" alt="Ruth Boro" class="avatar">
+                </div>
+                <h3 class="name">RUTH BORO</h3>
+                <p class="role">Tutor</p>
+                <a class="a-learn-more" href="vcards/vcard-ruth.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- JULI BORO -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/juli-b.jpg" alt="Juli Boro" class="avatar">
+                </div>
+                <h3 class="name">JULI BORO</h3>
+                <p class="role">Assistant Teacher</p>
+                <a class="a-learn-more" href="vcards/vcard-juli.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- LEEZA BRAHMA -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/leeza-b.jpg" alt="Leeza Brahma" class="avatar">
+                </div>
+                <h3 class="name">LEEZA BRAHMA</h3>
+                <p class="role">Assistant Teacher</p>
+                <a class="a-learn-more" href="vcards/vcard-leeza.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- RAJDIP NATH -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/rajdip-n.jpg" alt="Rajdip Nath" class="avatar">
+                </div>
+                <h3 class="name">RAJDIP NATH</h3>
+                <p class="role">Assistant Teacher</p>
+                <a class="a-learn-more" href="vcards/vcard-rajdip.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- DWITHUN BARO -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/dwithun-b.jpg" alt="Dwithun Baro" class="avatar">
+                </div>
+                <h3 class="name">DWITHUN BARO</h3>
+                <p class="role">Tutor</p>
+                <a class="a-learn-more" href="vcards/vcard-dwithun.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- EMERSON NAG -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/emerson-n.jpg" alt="Emerson Nag" class="avatar">
+                </div>
+                <h3 class="name">EMERSON NAG</h3>
+                <p class="role">Tutor</p>
+                <a class="a-learn-more" href="vcards/vcard-emerson.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- PRITY BORO -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/prity-b.jpg" alt="Prity Boro" class="avatar">
+                </div>
+                <h3 class="name">PRITY BORO</h3>
+                <p class="role">Tutor</p>
+                <a class="a-learn-more" href="vcards/vcard-prity.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+            <!-- DALIMA MUSHAHARY -->
+            <div class="profile-card">
+                <div class="avatar-container">
+                    <img src="vcards/photo/dalima-m.jpg" alt="Dalima Mushahary" class="avatar">
+                </div>
+                <h3 class="name">DALIMA MUSHAHARY</h3>
+                <p class="role">Tutor</p>
+                <a class="a-learn-more" href="vcards/vcard-dalima.html">
+                    <button class="btn-learn-more">Learn More</button>
+                </a>
+            </div>
+
+        </section>
+    </main>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+    const menuToggle = document.getElementById("menuToggle");
+    const navLinks = document.getElementById("navLinks");
+
+    // Toggle Responsive Mobile Navbar Drawer
+    menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("active");
+        
+        // Simple animated hamburger turn effect
+        menuToggle.classList.toggle("open");
+    });
+
+    
+});
+    </script>
+</body>
+</html>
